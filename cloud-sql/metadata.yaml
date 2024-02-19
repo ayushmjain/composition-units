@@ -1,0 +1,53 @@
+ID: cloud-sql
+displayName: Cloud SQL
+description: Cloud SQL is a fully-managed relational database service in GCP.
+clientLibraryDocumentationLink: https://cloud.google.com/sql/docs/mysql/admin-api/libraries
+codeSampleLink: https://cloud.google.com/sql/docs/mysql/samples
+inputs:
+- name: project
+  type: string
+  description: GCP Project where the Cloud SQL database instance should be created.
+  isRequired: true
+  displayName: Project ID
+  isEnvVariable: true
+- name: region
+  type: string
+  description: GCP Region where the Cloud SQL database instance should be created.
+  isRequired: true
+  displayName: Region
+  isEnvVariable: true
+- name: zone
+  type: string
+  description: GCP Zone where the Cloud SQL database instance should be created.
+  isRequired: true
+  displayName: Zone
+  isEnvVariable: true
+- name: network_name
+  type: string
+  description: Name of an existing GCP compute network where the Cloud SQL database instance should be created.
+  isRequired: false
+  default: null
+  displayName: Network name
+  isEnvVariable: false
+  connections:
+  - componentID: compute-network
+    output: network_name
+- name: database_user_name
+  type: string
+  description: Database user name
+  isRequired: true
+  displayName: Database user name
+  isEnvVariable: false
+  connections:
+  - compositionUnitID: cloud-run
+    output: service_account_full_name
+- name: database_name
+  type: string
+  description: Database name
+  isRequired: true
+  displayName: Database name
+  isEnvVariable: false
+outputs:
+- database_connection_name
+- database_host
+- database_name

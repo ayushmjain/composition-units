@@ -1,0 +1,43 @@
+ID: redis
+displayName: Redis
+description: Redis or memorystore is a fully managed in-memory data store service provided by GCP.
+clientLibraryDocumentationLink: https://cloud.google.com/memorystore/docs/redis/libraries
+codeSampleLink: [TBD]
+inputs:
+- name: project
+  type: string
+  description: GCP Project where this redis instance should be created.
+  isRequired: true
+  displayName: Project ID
+  isEnvVariable: true
+- name: region
+  type: string
+  description: GCP Region where this redis instance should be created.
+  isRequired: true
+  displayName: Region
+  isEnvVariable: true
+- name: zone
+  type: string
+  description: GCP Zone where this redis instance should be created.
+  isRequired: true
+  displayName: Zone
+  isEnvVariable: true
+- name: redis_name
+  type: string
+  description: Name for the redis instance. This should be unique in the project.
+  isRequired: true
+  displayName: Redis instance name
+  isEnvVariable: false
+- name: network_name
+  type: string
+  description: Name of an existing GCP compute network where this redis instance should be created.
+  isRequired: false
+  default: null
+  displayName: Network name
+  isEnvVariable: false
+  connections:
+  - compositionUnitID: compute-network
+    output: network_name
+outputs:
+- redis_host
+- redis_port
