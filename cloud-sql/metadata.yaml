@@ -30,7 +30,7 @@ inputs:
   displayName: Network name
   isEnvVariable: false
   connections:
-  - componentID: compute-network
+  - compositionUnitID: compute-network
     output: network_name
 - name: database_user_name
   type: string
